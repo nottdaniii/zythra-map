@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Zythera: Nightmare Kingdom</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      background: #0b0b0b;
+      color: white;
+      font-family: Arial;
+    }
+
+    h2 {
+      text-align: center;
+      padding: 10px;
+    }
+
+    #map {
+      height: 90vh;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>🌲 Zythera: Nightmare Kingdom</h2>
+
+<div id="map"></div>
+
+<script>
+  // 🌍 Mundo ficticio (bosque aislado)
+var map = L.map('map').setView([50.7, 10.0], 4);
+
+  // 🌑 Mapa oscuro (bosque/misterio)
+ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap &copy; CARTO'
+}).addTo(map);
+
+
+L.marker([50.70, 10.20]).addTo(map)
+  .bindPopup("🏚️ Entrada Zythera");
+
+L.marker([51.20, 9.50]).addTo(map)
+  .bindPopup("🌲 Bosque de Sombras");
+
+L.marker([50.10, 10.80]).addTo(map)
+  .bindPopup("🚫 Zona Prohibida");
+
+L.marker([51.00, 10.90]).addTo(map)
+  .bindPopup("👁️ Lago de los Susurros");
+
+L.marker([50.40, 9.30]).addTo(map)
+  .bindPopup("🕯️ Ruinas Olvidadas");
+
+
+
+</script>
+
+</body>
+</html>
+
+ 
