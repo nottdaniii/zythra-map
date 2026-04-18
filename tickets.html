@@ -2,8 +2,14 @@
 <html>
 <head>
   <title>Boletos Zythera</title>
+
   <style>
-    body { background:#0b0b0b; color:white; font-family:Arial; text-align:center; }
+    body {
+      background:#0b0b0b;
+      color:white;
+      font-family:Arial;
+      text-align:center;
+    }
 
     .card {
       background:#1f1f1f;
@@ -37,55 +43,66 @@
 
 <div class="card">
 
-<button onclick="select('General',45)">Entrada General - $45</button>
-<button onclick="select('VIP del Terror',75)">VIP del Terror - $75</button>
-<button onclick="select('Combo del Miedo',35)">Combo del Miedo - $35 c/u</button>
-<button onclick="select('Noche Extrema',85)">Noche Extrema - $85</button>
-<button onclick="select('Estudiantil',38)">Descuento Estudiantil - $38</button>
+  <button onclick="select('Entrada General',45)">Entrada General - $45</button>
+  <button onclick="select('VIP del Terror',75)">VIP del Terror - $75</button>
+  <button onclick="select('Combo del Miedo',35)">Combo del Miedo - $35 c/u</button>
+  <button onclick="select('Noche Extrema',85)">Noche Extrema - $85</button>
+  <button onclick="select('Descuento Estudiantil',38)">Descuento Estudiantil - $38</button>
 
-<p id="sel">Ninguno seleccionado</p>
+  <p id="sel">Ninguno seleccionado</p>
 
-<input id="name" placeholder="Nombre">
-<input id="qty" placeholder="Cantidad (combo)">
+  <input id="name" placeholder="Nombre">
 
-<br>
+  <input id="qty" type="number" placeholder="Cantidad (solo combo)">
 
-<button onclick="buy()">Confirmar</button>
+  <br>
 
-<p id="out"></p>
+  <button onclick="buy()">Confirmar compra</button>
+
+  <p id="out"></p>
 
 </div>
 
 <script>
-let ticket="";
-let price=0;
 
-function select(t,p){
-  ticket=t;
-  price=p;
-  document.getElementById("sel").innerText=t+" - $"+p;
+let ticket = "";
+let price = 0;
+
+function select(t, p){
+  ticket = t;
+  price = p;
+  document.getElementById("sel").innerText = t + " - $" + p;
 }
 
 function buy(){
-  let name=document.getElementById("name").value;
-  let qty=document.getElementById("qty").value;
+  let name = document.getElementById("name").value;
+  let qty = Number(document.getElementById("qty").value);
 
-  if(!ticket||!name){ alert("Falta info"); return; }
-
-  let total=price;
-  if(ticket.includes("Combo")&&qty){
-    total=price*qty;
+  if(!ticket || !name){
+    alert("Falta info");
+    return;
   }
 
-  let code="ZT-"+Math.floor(Math.random()*99999);
+  if(!qty || qty < 1){
+    qty = 1;
+  }
 
-  localStorage.setItem("ticket",ticket);
-  localStorage.setItem("name",name);
-  localStorage.setItem("total",total);
-  localStorage.setItem("code",code);
+  let total = price;
 
-  window.location="confirmacion.html";
+  if(ticket.includes("Combo")){
+    total = price * qty;
+  }
+
+  let code = "ZT-" + Math.floor(Math.random()*99999);
+
+  localStorage.setItem("ticket", ticket);
+  localStorage.setItem("name", name);
+  localStorage.setItem("total", total);
+  localStorage.setItem("code", code);
+
+  window.location = "confirmacion.html";
 }
+
 </script>
 
 </body>
