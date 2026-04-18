@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Boleto Zythera</title>
+
+  <style>
+    body{
+      background: radial-gradient(circle, #000, #111);
+      color:white;
+      font-family:Arial;
+      text-align:center;
+    }
+
+    .ticket{
+      margin-top:60px;
+      display:inline-block;
+      padding:25px;
+      border:2px dashed crimson;
+      border-radius:15px;
+      background:#111;
+      box-shadow:0 0 20px crimson;
+      width:300px;
+    }
+
+    .title{
+      font-size:22px;
+      color:crimson;
+      margin-bottom:10px;
+    }
+
+    .line{
+      border-top:1px dashed #444;
+      margin:10px 0;
+    }
+
+    .code{
+      margin-top:10px;
+      font-size:18px;
+      color:lime;
+      letter-spacing:2px;
+    }
+
+    .valid{
+      margin-top:15px;
+      color:#00ffcc;
+      font-weight:bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>🎟️ ZYTHERA EXPERIENCE</h1>
+
+<div class="ticket">
+
+  <div class="title">BOLETO DIGITAL</div>
+
+  <div class="line"></div>
+
+  <p id="info">Cargando...</p>
+
+  <div class="line"></div>
+
+  <div class="valid">✔ ACCESO PERMITIDO</div>
+
+</div>
+
+<script>
+window.onload = function () {
+
+  let params = new URLSearchParams(window.location.search);
+
+  let ticket = params.get("tipo") || "Entrada";
+  let name = params.get("nombre") || "Invitado";
+  let total = params.get("total") || "0";
+  let code = params.get("codigo") || "SIN-CODIGO";
+
+  document.getElementById("info").innerHTML =
+  "👤 " + name + "<br>" +
+  "🎟️ " + ticket + "<br>" +
+  "💰 $" + total + "<br>" +
+  "<div class='code'>" + code + "</div>";
+
+};
+</script>
+
+</body>
+</html>
