@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Confirmación</title>
+
+  <style>
+    body {
+      background:black;
+      color:white;
+      font-family:Arial;
+      text-align:center;
+    }
+
+    .box {
+      margin-top:100px;
+      padding:20px;
+      border:1px solid crimson;
+      display:inline-block;
+      border-radius:10px;
+    }
+
+    .code {
+      color:lime;
+      font-size:20px;
+      font-weight:bold;
+    }
+
+    img {
+      margin-top:15px;
+      width:200px;
+      height:200px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>🎟️ BOLETO CONFIRMADO</h1>
+
+<div class="box">
+
+  <p id="data">Cargando...</p>
+
+  <!-- 🔥 QR -->
+  <img id="qr">
+
+</div>
+
+<script>
+window.onload = function () {
+
+  console.log("Página cargó ✔");
+
+  // 🧾 datos seguros
+  let ticket = localStorage.getItem("ticket") || "No disponible";
+  let name = localStorage.getItem("name") || "Invitado";
+  let total = localStorage.getItem("total") || "0";
+  let code = localStorage.getItem("code") || "SIN-CODIGO";
+
+  // 📄 texto
+  document.getElementById("data").innerHTML =
+  "👤 " + name + "<br>" +
+  "🎟️ " + ticket + "<br>" +
+  "💰 $" + total + "<br><br>" +
+  "🔐 Código:<br>" +
+  "<span class='code'>" + code + "</span>";
+
+  // 🔗 link del QR
+  let qrLink =
+ "https://nottdaniii.github.io/zythra-map/boleto.html" +
+"?tipo=" + ticket +
+"&nombre=" + name +
+"&total=" + total +
+"&codigo=" + code;
+
+  // 📱 QR FINAL (FORZADO)
+  let qrImg = document.getElementById("qr");
+
+  qrImg.src =
+  "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data="
+  + encodeURIComponent(qrLink);
+
+  console.log("QR generado ✔");
+
+};
+</script>
+
+</body>
+</html>
