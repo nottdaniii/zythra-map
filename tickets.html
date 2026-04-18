@@ -34,6 +34,10 @@
       width:80%;
       margin:8px;
     }
+
+    #sel {
+      margin-top:10px;
+    }
   </style>
 </head>
 
@@ -59,8 +63,6 @@
 
   <button onclick="buy()">Confirmar compra</button>
 
-  <p id="out"></p>
-
 </div>
 
 <script>
@@ -75,21 +77,21 @@ function select(t, p){
 }
 
 function buy(){
-  let name = document.getElementById("name").value;
-  let qty = Number(document.getElementById("qty").value);
+  let name = document.getElementById("name").value.trim();
+  let qty = parseInt(document.getElementById("qty").value);
 
   if(!ticket || !name){
     alert("Falta info");
     return;
   }
 
-  if(!qty || qty < 1){
+  if(isNaN(qty) || qty < 1){
     qty = 1;
   }
 
   let total = price;
 
-  if(ticket.includes("Combo")){
+  if(ticket === "Combo del Miedo"){
     total = price * qty;
   }
 
